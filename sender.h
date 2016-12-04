@@ -1,35 +1,34 @@
 #pragma once
-#include <QDialog>
+#include <QObject>
+#include <QList>
 #include <QHostAddress>
 
-class QDialogButtonBox;
-class QLabel;
-class QPushButton;
+
 class QTimer;
 class QUdpSocket;
-class QSpinBox;
 
-class Sender : public QDialog
+
+class Sender : public QObject
 {
     Q_OBJECT
 
 public:
-    Sender(QWidget *parent = 0);
+    Sender(QObject *parent = 0);
 
+    void formQUeue();
 private slots:
-    void ttlChanged(int newTtl);
     void startSending();
-    void sendDatagram();
-
+    void sendDatagram(const QByteArray&);
+    void readIncome();
+    void ultimateSend();
+    void timerMark();
 private:
-    QLabel *statusLabel;
-    QLabel *ttlLabel;
-    QSpinBox *ttlSpinBox;
-    QPushButton *startButton;
-    QPushButton *quitButton;
-    QDialogButtonBox *buttonBox;
+    QList<QByteArray> dataToTransfer;
+    QByteArray dataSent, pendingBytesS;
     QUdpSocket *udpSocket,*udpSocket1,*udpSocket2;
     QTimer *timer;
-    QHostAddress groupAddress;
+    QHostAddress groupAddressTO;
     int messageNo;
+signals:
+    void readyToSend();
 };
