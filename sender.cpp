@@ -6,7 +6,8 @@
 Sender::Sender(QWidget *parent)
     : QDialog(parent)
 {
-    groupAddress = QHostAddress("239.255.43.21");
+    groupAddressTO = QHostAddress("239.255.43.21");
+    groupAddressFROM = QHostAddress("239.255.43.21");
 
     statusLabel = new QLabel(tr("Ready to multicast datagrams to group %1 on port 45454").arg(groupAddress.toString()));
 
