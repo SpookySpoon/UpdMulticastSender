@@ -10,7 +10,20 @@ CONFIG += console
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    sender.cpp
+    sender.cpp \
+    packageFormat.pb.cc
 
 HEADERS += \
-    sender.h
+    sender.h \
+    packageFormat.pb.h \
+    pbuff.h
+
+INCLUDEPATH += $$PWD/../../../../../../Games/protobuf1/src
+
+win32: LIBS += -L$$PWD/./ -lprotobuf
+
+INCLUDEPATH += $$PWD/.
+DEPENDPATH += $$PWD/.
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/./protobuf.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/./libprotobuf.a

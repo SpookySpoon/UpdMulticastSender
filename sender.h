@@ -2,7 +2,7 @@
 #include <QObject>
 #include <QList>
 #include <QHostAddress>
-
+#include "packageFormat.pb.h"
 
 class QTimer;
 class QUdpSocket;
@@ -13,22 +13,23 @@ class Sender : public QObject
     Q_OBJECT
 
 public:
-    Sender(QObject *parent = 0);
-
-    void formQUeue();
+    explicit Sender(int,int,const QHostAddress&,const QString&, QObject *parent = nullptr);
+    void formQUeue(const QString&);
+    void sendDatagram(const udpStream::updBytes&);
 private slots:
-    void startSending();
-    void sendDatagram(const QByteArray&);
     void readIncome();
-    void ultimateSend();
-    void timerMark();
+    void sending();
+    void initSender();
 private:
-    QList<QByteArray> dataToTransfer;
-    QByteArray dataSent, pendingBytesS;
-    QUdpSocket *udpSocket,*udpSocket1,*udpSocket2;
-    QTimer *timer;
+    int checkPort, sendPort, packetID, resendTries=0;
     QHostAddress groupAddressTO;
-    int messageNo;
+    QString transportedFile;
+
+    udpStream::updBytes newGPPacket(int,const QByteArray&);
+    QList<udpStream::updBytes> dataToTransfer;
+    udpStream::updBytes dataSent, pendingPacket;
+    QUdpSocket *udpSocket;
+    QTimer *timer;
 signals:
     void readyToSend();
 };
