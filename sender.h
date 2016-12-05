@@ -16,6 +16,7 @@ class Sender : public QDialog
 public:
     Sender(QWidget *parent = 0);
 
+
 private slots:
     void ttlChanged(int newTtl);
     void startSending();

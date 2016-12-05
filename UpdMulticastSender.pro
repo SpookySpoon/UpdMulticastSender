@@ -14,3 +14,4 @@ SOURCES += main.cpp \
 
 HEADERS += \
     sender.h
+

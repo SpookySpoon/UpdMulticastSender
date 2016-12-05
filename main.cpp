@@ -8,4 +8,5 @@ int main(int argc, char *argv[])
     Sender sender;
     sender.show();
     return app.exec();
+
 }

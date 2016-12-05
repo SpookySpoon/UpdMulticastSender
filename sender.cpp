@@ -44,6 +44,7 @@ Sender::Sender(QWidget *parent)
 
     setWindowTitle(tr("Multicast Sender"));
     ttlSpinBox->setValue(1);
+
 }
 
 void Sender::ttlChanged(int newTtl)
