@@ -7,17 +7,13 @@
 Sender::Sender(int someCheckPort, int someSendPort, const QHostAddress& someGroupAddressTO, const QString& someTransportedFile, QObject *parent)
     : QUdpSocket(parent),checkPort(someCheckPort), sendPort(someSendPort),groupAddressTO(someGroupAddressTO), transportedFile(someTransportedFile)
 {
-    initSender();
+
 }
 
 void Sender::initSender()
 {
-    timer = new QTimer(this);
-
     this->bind(QHostAddress::AnyIPv4, checkPort, QUdpSocket::ShareAddress);
     this->joinMulticastGroup(groupAddressTO);
-
-
     QSettings settings(QString("%1\\%2").arg(QCoreApplication::applicationDirPath()).arg("UpdSenderSetting.ini"),QSettings::IniFormat);
     packetSize=settings.value("PacketSize","").toInt();
     if(packetSize==0)
@@ -29,6 +25,7 @@ void Sender::initSender()
     formQUeue(transportedFile);
     pendingPacket=dataToTransfer.takeFirst();
     sendDatagram(pendingPacket);
+
 }
 
 void Sender::sendDatagram(const UdpStream::UdpBytes& gPack)
@@ -67,7 +64,7 @@ void Sender::sending()
     if(resendTries<5)
     {
         sendDatagram(pendingPacket);
-        qDebug()<<"dataToTransfer.count(): "<<dataToTransfer.count();
+        qDebug()<<"dataToTransfer.count(): "<<pendingPacket.packstatus()<<' '<<dataToTransfer.count();
         timer->start(1000);
     }
     else
