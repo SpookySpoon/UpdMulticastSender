@@ -2,8 +2,10 @@
 #include "pbuff.h"
 #include "sender.h"
 
+
+//Коммуникации между получателем и отправителем выведены на разные порты. Здесь отправитель сливает файл на порт "sendPort" и получает отчет о доставке через "checkPort".
 Sender::Sender(int someCheckPort, int someSendPort, const QHostAddress& someGroupAddressTO, const QString& someTransportedFile, QObject *parent)
-    : QObject(parent),checkPort(someCheckPort), sendPort(someSendPort),groupAddressTO(someGroupAddressTO), transportedFile(someTransportedFile)
+    : QUdpSocket(parent),checkPort(someCheckPort), sendPort(someSendPort),groupAddressTO(someGroupAddressTO), transportedFile(someTransportedFile)
 {
     initSender();
 }
@@ -11,13 +13,9 @@ Sender::Sender(int someCheckPort, int someSendPort, const QHostAddress& someGrou
 void Sender::initSender()
 {
     timer = new QTimer(this);
-    udpSocket = new QUdpSocket(this);
-    connect(udpSocket,SIGNAL(readyRead()),this,SLOT(readIncome()));
-    connect(this,SIGNAL(destroyed(QObject*)),timer,SLOT(deleteLater()));
-    connect(this,SIGNAL(destroyed(QObject*)),udpSocket,SLOT(deleteLater()));
-    connect(timer,SIGNAL(timeout()),this,SLOT(sending()));
-    udpSocket->bind(QHostAddress::AnyIPv4, checkPort, QUdpSocket::ShareAddress);
-    udpSocket->joinMulticastGroup(groupAddressTO);
+
+    this->bind(QHostAddress::AnyIPv4, checkPort, QUdpSocket::ShareAddress);
+    this->joinMulticastGroup(groupAddressTO);
 
 
     QSettings settings(QString("%1\\%2").arg(QCoreApplication::applicationDirPath()).arg("UpdSenderSetting.ini"),QSettings::IniFormat);
@@ -36,17 +34,17 @@ void Sender::initSender()
 void Sender::sendDatagram(const UdpStream::UdpBytes& gPack)
 {
     QByteArray bytesToSend=ProtoBytes<UdpStream::UdpBytes>::protoToByteArray(gPack);
-    udpSocket->writeDatagram(bytesToSend.data(), bytesToSend.size(), groupAddressTO, sendPort);
+    this->writeDatagram(bytesToSend.data(), bytesToSend.size(), groupAddressTO, sendPort);
 }
 
 void Sender::readIncome()
 {
     QByteArray fileBytes;
     UdpStream::UdpBytes responceProto;
-    while (udpSocket->hasPendingDatagrams())
+    while (this->hasPendingDatagrams())
     {
-        fileBytes.resize(udpSocket->pendingDatagramSize());
-        udpSocket->readDatagram(fileBytes.data(), fileBytes.size());
+        fileBytes.resize(this->pendingDatagramSize());
+        this->readDatagram(fileBytes.data(), fileBytes.size());
     }
     responceProto = ProtoBytes<UdpStream::UdpBytes>::protoFromByteArray(fileBytes);
 
@@ -54,6 +52,7 @@ void Sender::readIncome()
     {
         dataToTransfer.clear();
         timer->stop();
+        emit finishedTransfer();
     }
     if(!dataToTransfer.isEmpty())
     {
@@ -70,6 +69,10 @@ void Sender::sending()
         sendDatagram(pendingPacket);
         qDebug()<<"dataToTransfer.count(): "<<dataToTransfer.count();
         timer->start(1000);
+    }
+    else
+    {
+        emit finishedTransfer();
     }
     resendTries++;
 }

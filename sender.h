@@ -3,13 +3,14 @@
 #include <QList>
 #include "packageFormat.pb.h"
 
-class Sender : public QObject
+class Sender : public QUdpSocket
 {
     Q_OBJECT
 public:
     explicit Sender(int,int,const QHostAddress&,const QString&, QObject *parent = nullptr);
     void formQUeue(const QString&);
     void sendDatagram(const UdpStream::UdpBytes&);
+    QTimer *timer= nullptr;
 private slots:
     void readIncome();
     void sending();
@@ -20,10 +21,8 @@ private:
     QHostAddress groupAddressTO;
     QString transportedFile;
     QList<UdpStream::UdpBytes> dataToTransfer;
-
     QList<QByteArray> dataToTest;
-
     UdpStream::UdpBytes pendingPacket;
-    QUdpSocket *udpSocket= nullptr;
-    QTimer *timer= nullptr;
+signals:
+    void finishedTransfer();
 };

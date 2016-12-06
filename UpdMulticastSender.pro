@@ -11,12 +11,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     sender.cpp \
-    packageFormat.pb.cc
+    packageFormat.pb.cc \
+    deliveryhandler.cpp
 
 HEADERS += \
     sender.h \
     packageFormat.pb.h \
-    pbuff.h
+    pbuff.h \
+    deliveryhandler.h
 
 INCLUDEPATH += $$PWD/../../../../../../Games/protobuf1/src
 
