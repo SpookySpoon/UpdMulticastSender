@@ -17,13 +17,14 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace udpStream {
+namespace UdpStream {
 
 namespace {
 
-const ::google::protobuf::Descriptor* updBytes_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* UdpBytes_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  updBytes_reflection_ = NULL;
+  UdpBytes_reflection_ = NULL;
+const ::google::protobuf::EnumDescriptor* UdpBytes_PackStatus_descriptor_ = NULL;
 
 }  // namespace
 
@@ -35,22 +36,24 @@ void protobuf_AssignDesc_packageFormat_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "packageFormat.proto");
   GOOGLE_CHECK(file != NULL);
-  updBytes_descriptor_ = file->message_type(0);
-  static const int updBytes_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(updBytes, packid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(updBytes, pack_),
+  UdpBytes_descriptor_ = file->message_type(0);
+  static const int UdpBytes_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UdpBytes, packid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UdpBytes, packcontent_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UdpBytes, packstatus_),
   };
-  updBytes_reflection_ =
+  UdpBytes_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      updBytes_descriptor_,
-      updBytes::default_instance_,
-      updBytes_offsets_,
+      UdpBytes_descriptor_,
+      UdpBytes::default_instance_,
+      UdpBytes_offsets_,
       -1,
       -1,
       -1,
-      sizeof(updBytes),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(updBytes, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(updBytes, _is_default_instance_));
+      sizeof(UdpBytes),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UdpBytes, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UdpBytes, _is_default_instance_));
+  UdpBytes_PackStatus_descriptor_ = UdpBytes_descriptor_->enum_type(0);
 }
 
 namespace {
@@ -65,14 +68,14 @@ void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      updBytes_descriptor_, &updBytes::default_instance());
+      UdpBytes_descriptor_, &UdpBytes::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_packageFormat_2eproto() {
-  delete updBytes::default_instance_;
-  delete updBytes_reflection_;
+  delete UdpBytes::default_instance_;
+  delete UdpBytes_reflection_;
 }
 
 void protobuf_AddDesc_packageFormat_2eproto() GOOGLE_ATTRIBUTE_COLD;
@@ -83,13 +86,15 @@ void protobuf_AddDesc_packageFormat_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\023packageFormat.proto\022\tudpStream\"(\n\010updB"
-    "ytes\022\016\n\006packId\030\001 \001(\r\022\014\n\004pack\030\002 \001(\014b\006prot"
-    "o3", 82);
+    "\n\023packageFormat.proto\022\tUdpStream\"\222\001\n\010Udp"
+    "Bytes\022\016\n\006packId\030\001 \001(\r\022\023\n\013packContent\030\002 \001"
+    "(\014\0222\n\npackStatus\030\003 \001(\0162\036.UdpStream.UdpBy"
+    "tes.PackStatus\"-\n\nPackStatus\022\t\n\005FIRST\020\000\022"
+    "\n\n\006MIDDLE\020\001\022\010\n\004LAST\020\002b\006proto3", 189);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "packageFormat.proto", &protobuf_RegisterTypes);
-  updBytes::default_instance_ = new updBytes();
-  updBytes::default_instance_->InitAsDefaultInstance();
+  UdpBytes::default_instance_ = new UdpBytes();
+  UdpBytes::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_packageFormat_2eproto);
 }
 
@@ -102,84 +107,129 @@ struct StaticDescriptorInitializer_packageFormat_2eproto {
 
 // ===================================================================
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int updBytes::kPackIdFieldNumber;
-const int updBytes::kPackFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-updBytes::updBytes()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:udpStream.updBytes)
+const ::google::protobuf::EnumDescriptor* UdpBytes_PackStatus_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return UdpBytes_PackStatus_descriptor_;
+}
+bool UdpBytes_PackStatus_IsValid(int value) {
+  switch(value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
 }
 
-void updBytes::InitAsDefaultInstance() {
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const UdpBytes_PackStatus UdpBytes::FIRST;
+const UdpBytes_PackStatus UdpBytes::MIDDLE;
+const UdpBytes_PackStatus UdpBytes::LAST;
+const UdpBytes_PackStatus UdpBytes::PackStatus_MIN;
+const UdpBytes_PackStatus UdpBytes::PackStatus_MAX;
+const int UdpBytes::PackStatus_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int UdpBytes::kPackIdFieldNumber;
+const int UdpBytes::kPackContentFieldNumber;
+const int UdpBytes::kPackStatusFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+UdpBytes::UdpBytes()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:UdpStream.UdpBytes)
+}
+
+void UdpBytes::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-updBytes::updBytes(const updBytes& from)
+UdpBytes::UdpBytes(const UdpBytes& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:udpStream.updBytes)
+  // @@protoc_insertion_point(copy_constructor:UdpStream.UdpBytes)
 }
 
-void updBytes::SharedCtor() {
+void UdpBytes::SharedCtor() {
     _is_default_instance_ = false;
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   packid_ = 0u;
-  pack_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  packcontent_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  packstatus_ = 0;
 }
 
-updBytes::~updBytes() {
-  // @@protoc_insertion_point(destructor:udpStream.updBytes)
+UdpBytes::~UdpBytes() {
+  // @@protoc_insertion_point(destructor:UdpStream.UdpBytes)
   SharedDtor();
 }
 
-void updBytes::SharedDtor() {
-  pack_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+void UdpBytes::SharedDtor() {
+  packcontent_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
 
-void updBytes::SetCachedSize(int size) const {
+void UdpBytes::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* updBytes::descriptor() {
+const ::google::protobuf::Descriptor* UdpBytes::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return updBytes_descriptor_;
+  return UdpBytes_descriptor_;
 }
 
-const updBytes& updBytes::default_instance() {
+const UdpBytes& UdpBytes::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_packageFormat_2eproto();
   return *default_instance_;
 }
 
-updBytes* updBytes::default_instance_ = NULL;
+UdpBytes* UdpBytes::default_instance_ = NULL;
 
-updBytes* updBytes::New(::google::protobuf::Arena* arena) const {
-  updBytes* n = new updBytes;
+UdpBytes* UdpBytes::New(::google::protobuf::Arena* arena) const {
+  UdpBytes* n = new UdpBytes;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void updBytes::Clear() {
-// @@protoc_insertion_point(message_clear_start:udpStream.updBytes)
-  packid_ = 0u;
-  pack_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+void UdpBytes::Clear() {
+// @@protoc_insertion_point(message_clear_start:UdpStream.UdpBytes)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(UdpBytes, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<UdpBytes*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(packid_, packstatus_);
+  packcontent_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+
+#undef ZR_HELPER_
+#undef ZR_
+
 }
 
-bool updBytes::MergePartialFromCodedStream(
+bool UdpBytes::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:udpStream.updBytes)
+  // @@protoc_insertion_point(parse_start:UdpStream.UdpBytes)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -195,16 +245,32 @@ bool updBytes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_pack;
+        if (input->ExpectTag(18)) goto parse_packContent;
         break;
       }
 
-      // optional bytes pack = 2;
+      // optional bytes packContent = 2;
       case 2: {
         if (tag == 18) {
-         parse_pack:
+         parse_packContent:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_pack()));
+                input, this->mutable_packcontent()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_packStatus;
+        break;
+      }
+
+      // optional .UdpStream.UdpBytes.PackStatus packStatus = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_packStatus:
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_packstatus(static_cast< ::UdpStream::UdpBytes_PackStatus >(value));
         } else {
           goto handle_unusual;
         }
@@ -225,52 +291,64 @@ bool updBytes::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:udpStream.updBytes)
+  // @@protoc_insertion_point(parse_success:UdpStream.UdpBytes)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:udpStream.updBytes)
+  // @@protoc_insertion_point(parse_failure:UdpStream.UdpBytes)
   return false;
 #undef DO_
 }
 
-void updBytes::SerializeWithCachedSizes(
+void UdpBytes::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:udpStream.updBytes)
+  // @@protoc_insertion_point(serialize_start:UdpStream.UdpBytes)
   // optional uint32 packId = 1;
   if (this->packid() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->packid(), output);
   }
 
-  // optional bytes pack = 2;
-  if (this->pack().size() > 0) {
+  // optional bytes packContent = 2;
+  if (this->packcontent().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->pack(), output);
+      2, this->packcontent(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:udpStream.updBytes)
+  // optional .UdpStream.UdpBytes.PackStatus packStatus = 3;
+  if (this->packstatus() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      3, this->packstatus(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:UdpStream.UdpBytes)
 }
 
-::google::protobuf::uint8* updBytes::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* UdpBytes::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:udpStream.updBytes)
+  // @@protoc_insertion_point(serialize_to_array_start:UdpStream.UdpBytes)
   // optional uint32 packId = 1;
   if (this->packid() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->packid(), target);
   }
 
-  // optional bytes pack = 2;
-  if (this->pack().size() > 0) {
+  // optional bytes packContent = 2;
+  if (this->packcontent().size() > 0) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->pack(), target);
+        2, this->packcontent(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:udpStream.updBytes)
+  // optional .UdpStream.UdpBytes.PackStatus packStatus = 3;
+  if (this->packstatus() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      3, this->packstatus(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:UdpStream.UdpBytes)
   return target;
 }
 
-int updBytes::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:udpStream.updBytes)
+int UdpBytes::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:UdpStream.UdpBytes)
   int total_size = 0;
 
   // optional uint32 packId = 1;
@@ -280,11 +358,17 @@ int updBytes::ByteSize() const {
         this->packid());
   }
 
-  // optional bytes pack = 2;
-  if (this->pack().size() > 0) {
+  // optional bytes packContent = 2;
+  if (this->packcontent().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->pack());
+        this->packcontent());
+  }
+
+  // optional .UdpStream.UdpBytes.PackStatus packStatus = 3;
+  if (this->packstatus() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->packstatus());
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -293,140 +377,158 @@ int updBytes::ByteSize() const {
   return total_size;
 }
 
-void updBytes::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:udpStream.updBytes)
+void UdpBytes::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UdpStream.UdpBytes)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const updBytes* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const updBytes>(
+  const UdpBytes* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const UdpBytes>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:udpStream.updBytes)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UdpStream.UdpBytes)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:udpStream.updBytes)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UdpStream.UdpBytes)
     MergeFrom(*source);
   }
 }
 
-void updBytes::MergeFrom(const updBytes& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:udpStream.updBytes)
+void UdpBytes::MergeFrom(const UdpBytes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UdpStream.UdpBytes)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
   if (from.packid() != 0) {
     set_packid(from.packid());
   }
-  if (from.pack().size() > 0) {
+  if (from.packcontent().size() > 0) {
 
-    pack_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.pack_);
+    packcontent_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.packcontent_);
+  }
+  if (from.packstatus() != 0) {
+    set_packstatus(from.packstatus());
   }
 }
 
-void updBytes::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:udpStream.updBytes)
+void UdpBytes::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UdpStream.UdpBytes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void updBytes::CopyFrom(const updBytes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:udpStream.updBytes)
+void UdpBytes::CopyFrom(const UdpBytes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UdpStream.UdpBytes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool updBytes::IsInitialized() const {
+bool UdpBytes::IsInitialized() const {
 
   return true;
 }
 
-void updBytes::Swap(updBytes* other) {
+void UdpBytes::Swap(UdpBytes* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void updBytes::InternalSwap(updBytes* other) {
+void UdpBytes::InternalSwap(UdpBytes* other) {
   std::swap(packid_, other->packid_);
-  pack_.Swap(&other->pack_);
+  packcontent_.Swap(&other->packcontent_);
+  std::swap(packstatus_, other->packstatus_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata updBytes::GetMetadata() const {
+::google::protobuf::Metadata UdpBytes::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = updBytes_descriptor_;
-  metadata.reflection = updBytes_reflection_;
+  metadata.descriptor = UdpBytes_descriptor_;
+  metadata.reflection = UdpBytes_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// updBytes
+// UdpBytes
 
 // optional uint32 packId = 1;
-void updBytes::clear_packid() {
+void UdpBytes::clear_packid() {
   packid_ = 0u;
 }
- ::google::protobuf::uint32 updBytes::packid() const {
-  // @@protoc_insertion_point(field_get:udpStream.updBytes.packId)
+ ::google::protobuf::uint32 UdpBytes::packid() const {
+  // @@protoc_insertion_point(field_get:UdpStream.UdpBytes.packId)
   return packid_;
 }
- void updBytes::set_packid(::google::protobuf::uint32 value) {
+ void UdpBytes::set_packid(::google::protobuf::uint32 value) {
   
   packid_ = value;
-  // @@protoc_insertion_point(field_set:udpStream.updBytes.packId)
+  // @@protoc_insertion_point(field_set:UdpStream.UdpBytes.packId)
 }
 
-// optional bytes pack = 2;
-void updBytes::clear_pack() {
-  pack_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional bytes packContent = 2;
+void UdpBytes::clear_packcontent() {
+  packcontent_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& updBytes::pack() const {
-  // @@protoc_insertion_point(field_get:udpStream.updBytes.pack)
-  return pack_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+ const ::std::string& UdpBytes::packcontent() const {
+  // @@protoc_insertion_point(field_get:UdpStream.UdpBytes.packContent)
+  return packcontent_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void updBytes::set_pack(const ::std::string& value) {
+ void UdpBytes::set_packcontent(const ::std::string& value) {
   
-  pack_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:udpStream.updBytes.pack)
+  packcontent_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:UdpStream.UdpBytes.packContent)
 }
- void updBytes::set_pack(const char* value) {
+ void UdpBytes::set_packcontent(const char* value) {
   
-  pack_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:udpStream.updBytes.pack)
+  packcontent_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:UdpStream.UdpBytes.packContent)
 }
- void updBytes::set_pack(const void* value, size_t size) {
+ void UdpBytes::set_packcontent(const void* value, size_t size) {
   
-  pack_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  packcontent_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:udpStream.updBytes.pack)
+  // @@protoc_insertion_point(field_set_pointer:UdpStream.UdpBytes.packContent)
 }
- ::std::string* updBytes::mutable_pack() {
+ ::std::string* UdpBytes::mutable_packcontent() {
   
-  // @@protoc_insertion_point(field_mutable:udpStream.updBytes.pack)
-  return pack_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:UdpStream.UdpBytes.packContent)
+  return packcontent_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* updBytes::release_pack() {
-  // @@protoc_insertion_point(field_release:udpStream.updBytes.pack)
+ ::std::string* UdpBytes::release_packcontent() {
+  // @@protoc_insertion_point(field_release:UdpStream.UdpBytes.packContent)
   
-  return pack_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return packcontent_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void updBytes::set_allocated_pack(::std::string* pack) {
-  if (pack != NULL) {
+ void UdpBytes::set_allocated_packcontent(::std::string* packcontent) {
+  if (packcontent != NULL) {
     
   } else {
     
   }
-  pack_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), pack);
-  // @@protoc_insertion_point(field_set_allocated:udpStream.updBytes.pack)
+  packcontent_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), packcontent);
+  // @@protoc_insertion_point(field_set_allocated:UdpStream.UdpBytes.packContent)
+}
+
+// optional .UdpStream.UdpBytes.PackStatus packStatus = 3;
+void UdpBytes::clear_packstatus() {
+  packstatus_ = 0;
+}
+ ::UdpStream::UdpBytes_PackStatus UdpBytes::packstatus() const {
+  // @@protoc_insertion_point(field_get:UdpStream.UdpBytes.packStatus)
+  return static_cast< ::UdpStream::UdpBytes_PackStatus >(packstatus_);
+}
+ void UdpBytes::set_packstatus(::UdpStream::UdpBytes_PackStatus value) {
+  
+  packstatus_ = value;
+  // @@protoc_insertion_point(field_set:UdpStream.UdpBytes.packStatus)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace udpStream
+}  // namespace UdpStream
 
 // @@protoc_insertion_point(global_scope)

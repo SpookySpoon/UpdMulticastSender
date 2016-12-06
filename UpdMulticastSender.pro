@@ -1,4 +1,4 @@
-QT  += network widgets
+QT  += network
 QT  += core
 
 CONFIG += c++11
