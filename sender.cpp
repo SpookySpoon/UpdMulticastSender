@@ -95,7 +95,6 @@ void Sender::formQUeue(const QString& filePath)
                 tempBytes.append(rAll[i1]);
             }
             dataToTransfer<<newGPPacket(packetID,tempBytes,UdpStream::UdpBytes::PackStatus::UdpBytes_PackStatus_MIDDLE);
-            dataToTest<<tempBytes;//TEST
             packetID++;
         }
         int resid=byteCount%packetSize;
@@ -109,7 +108,6 @@ void Sender::formQUeue(const QString& filePath)
             }
         }
         dataToTransfer<<newGPPacket(packetID,tempBytes,UdpStream::UdpBytes::PackStatus::UdpBytes_PackStatus_LAST);
-        dataToTest<<tempBytes;//TEST
     }
 }
 
@@ -118,7 +116,7 @@ UdpStream::UdpBytes Sender::newGPPacket(int pID,const QByteArray& pBytes, UdpStr
 {
     UdpStream::UdpBytes package;
     package.set_packid(pID);
-    package.set_packcontent(pBytes);
+    package.set_packcontent(pBytes.data(),pBytes.size());
     package.set_packstatus(pStatus);
     return package;
 }
