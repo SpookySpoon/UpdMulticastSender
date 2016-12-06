@@ -24,6 +24,6 @@ private:
     QList<QByteArray> dataToTest;
 
     UdpStream::UdpBytes pendingPacket;
-    QUdpSocket *udpSocket;
-    QTimer *timer;
+    QUdpSocket *udpSocket= nullptr;
+    QTimer *timer= nullptr;
 };

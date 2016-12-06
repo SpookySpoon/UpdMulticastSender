@@ -29,41 +29,14 @@ void Sender::initSender()
     }
 
     formQUeue(transportedFile);
-
-
-
-
-    QByteArray myBytespROTO;
-    QByteArray myBytes;
-    for(auto i:dataToTransfer)
-    {
-
-//        QByteArray TenpBYtes=QString::fromStdString(i.packcontent());
-//        myBytespROTO.append(TenpBYtes);
-    }
-    for(auto i:dataToTest)
-    {
-        myBytes.append(i.data());
-    }
-
-    QFile myFile("C:\\Users\\Home\\Desktop\\Result\\Ted Irens - Sunday Breakfast.mp3");
-    myFile.open(QIODevice::ReadWrite);
-    myFile.write(myBytespROTO);
-    myFile.close();
-
-
-
-//    pendingPacket=dataToTransfer.takeFirst();
-//    sendDatagram(pendingPacket);
+    pendingPacket=dataToTransfer.takeFirst();
+    sendDatagram(pendingPacket);
 }
 
 void Sender::sendDatagram(const UdpStream::UdpBytes& gPack)
 {
     QByteArray bytesToSend=ProtoBytes<UdpStream::UdpBytes>::protoToByteArray(gPack);
     udpSocket->writeDatagram(bytesToSend.data(), bytesToSend.size(), groupAddressTO, sendPort);
-    qDebug()<<bytesToSend.size();
-    qDebug()<<gPack.packcontent().size();
-
 }
 
 void Sender::readIncome()
